@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from "./components/Todolist";
 
@@ -7,24 +7,37 @@ export type TasksType = {
     title: string
     isDone: boolean
 }
+export type FilterType = 'all' | 'active' | 'completed'
 
 function App() {
 
-    const tasks = [
-        { id: 1, title: "HTML&CSS", isDone: true },
-        { id: 2, title: "JS", isDone: true },
-        { id: 3, title: "ReactJS", isDone: false }
-    ];
-    const tasks2 = [
-        { id: 1, title: "Hello world", isDone: true },
-        { id: 2, title: "I am Happy", isDone: false },
-        { id: 3, title: "Yo", isDone: false }
-    ]
+    let [tasks, setTasks] = useState([
+        {id: 1, title: "HTML&CSS", isDone: true},
+        {id: 2, title: "JS", isDone: true},
+        {id: 3, title: "ReactJS", isDone: false}
+    ])
+    let [filter, setFilter] = useState<FilterType>('all')
+
+    const deleteTask = (idTask: number) => {
+        setTasks(tasks.filter(elem => elem.id !== idTask))
+    }
+
+    //фильтрация кнопок
+    let filteredTasks = tasks
+    if (filter === 'all') {filteredTasks = tasks}
+    if (filter === 'active') {filteredTasks = tasks.filter(elem => !elem.isDone)}
+    if (filter === 'completed') {filteredTasks = tasks.filter(elem => elem.isDone)}
+
+    const changeFilter = (buttonName: FilterType) => {
+        setFilter(buttonName)
+    }
 
     return (
         <div className="App">
-            <Todolist title={'ver 1'} tasks={tasks}/>
-            <Todolist title={'ver 2'} tasks={tasks2}/>
+            <Todolist title={'Todolist'}
+                      tasks={filteredTasks}
+                      deleteTask={deleteTask}
+                      changeFilter={changeFilter}/>
         </div>
     );
 }

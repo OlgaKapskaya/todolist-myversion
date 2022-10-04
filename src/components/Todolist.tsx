@@ -1,24 +1,45 @@
 import React from "react";
-import {TasksType} from "../App";
+import {FilterType, TasksType} from "../App";
 
 type TodolistProps = {
     title: string
     tasks: TasksType[]
+    deleteTask: (idTask: number) => void
+    changeFilter: (buttonName: FilterType) => void
 }
 
-export const Todolist: React.FC<TodolistProps> = (props) => {
-    const {title, tasks} = props;
+export const Todolist = (props: TodolistProps) => {
+
+    const onClickALLHandler = () => {
+        console.log('all')
+        props.changeFilter('all')
+    }
+    const onClickActiveHandler = () => {
+        console.log('active')
+        props.changeFilter('active')
+    }
+    const onClickCompletedHandler = () => {
+        console.log('completed')
+        props.changeFilter('completed')
+    }
+
     return (
         <div>
-            <h3>{title}</h3>
+            <h3>{props.title}</h3>
             <div>
                 <input/>
                 <button>+</button>
             </div>
             <ul>
-                {tasks.map(elem => {
+                {props.tasks.map(elem => {
+
+                    const onClickDelHandler = () => {
+                        props.deleteTask(elem.id)
+                    }
+
                     return (
                         <li key={elem.id}>
+                            <button onClick={onClickDelHandler}>DEL</button>
                             <input type="checkbox" checked={elem.isDone}/>
                             <span>{elem.title}</span>
                         </li>
@@ -27,9 +48,9 @@ export const Todolist: React.FC<TodolistProps> = (props) => {
 
             </ul>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={onClickALLHandler}>All</button>
+                <button onClick={onClickActiveHandler}>Active</button>
+                <button onClick={onClickCompletedHandler}>Completed</button>
             </div>
         </div>
     )
