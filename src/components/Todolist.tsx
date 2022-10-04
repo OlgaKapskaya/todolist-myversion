@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useState, KeyboardEvent} from "react";
 import {FilterType, TasksType} from "../App";
 
 type TodolistProps = {
@@ -7,6 +7,7 @@ type TodolistProps = {
     deleteTask: (idTask: string) => void
     changeFilter: (buttonName: FilterType) => void
     addTask: (title: string) => void
+    changeStatus: (idTask: string, isDone: boolean) => void
 }
 
 export const Todolist = (props: TodolistProps) => {
@@ -30,13 +31,20 @@ export const Todolist = (props: TodolistProps) => {
             setText('')
         }
     }
+    const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            onClickAddTaskHandler()
+        }
+    }
+
 
     return (
         <div>
             <h3>{props.title}</h3>
             <div>
                 <input value={text}
-                       onChange={onChangeInputHandler}/>
+                       onChange={onChangeInputHandler}
+                       onKeyPress={onKeyPressHandler}/>
                 <button onClick={onClickAddTaskHandler}>+</button>
             </div>
             <ul>
@@ -45,11 +53,13 @@ export const Todolist = (props: TodolistProps) => {
                     const onClickDelHandler = () => {
                         props.deleteTask(elem.id)
                     }
-
+                    const onChangeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
+                        props.changeStatus(elem.id, event.currentTarget.checked)
+                    }
                     return (
                         <li key={elem.id}>
                             <button onClick={onClickDelHandler}>DEL</button>
-                            <input type="checkbox" checked={elem.isDone}/>
+                            <input type="checkbox" checked={elem.isDone} onChange={onChangeStatusHandler}/>
                             <span>{elem.title}</span>
                         </li>
                     )
