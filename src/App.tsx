@@ -38,7 +38,6 @@ function App() {
     const changeFilter = (buttonName: FilterType) => {
         setFilter(buttonName)
     }
-
     const addTask = (title: string) => {
         let newTask = {id: v1(), title: title, isDone: false}
         setTasks([newTask, ...tasks])

@@ -1,0 +1,46 @@
+.todolistContainer{
+    font-family: Montserrat;
+}
+.error {
+    border: red 1px solid;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+}
+
+.activeFilter {
+    background: #0066CC;
+    border-radius: 3px;
+    border: 1px solid #0066CC;
+    color: #FFFFFF;
+}
+.disactiveFilter{
+    background: #FFFFFF;
+    border: 1px solid #004D99;
+    border-radius: 3px;
+    color: #0066CC;
+}
+.buttonDelete{
+    background: #CC1439;
+    border-radius: 3px;
+    border: 1px solid #CC1439;
+}
+.activeFilter:hover {
+    background: #0080FF;
+    border-radius: 3px;
+}
+
+.buttonDelete:hover {
+    background: #FF1A47;
+    border-radius: 3px;
+}
+.disactiveFilter:hover {
+    background: #E5F0FA;
+    border: 1px solid #0066CC;
+    border-radius: 3px;
+}
+.isDone {
+    opacity: 0.5;
+}
