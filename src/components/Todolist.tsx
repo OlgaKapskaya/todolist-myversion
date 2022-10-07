@@ -3,6 +3,7 @@ import {FilterType, TasksType} from "../App";
 import s from './Todolist.module.css'
 import {UniversalButton} from "./universal_components/UniversalButton";
 import {UniversalCheckbox} from "./universal_components/UniversalCheckbox";
+import {UniversalInput} from "./universal_components/UniversalInput";
 
 type TodolistProps = {
     title: string
@@ -14,9 +15,10 @@ type TodolistProps = {
 }
 
 export const Todolist = (props: TodolistProps) => {
-    const [text, setText] = useState('');
+
+    const [text, setText] = useState('') //for input
     const [error, setError] = useState('');
-    const [buttonName, setButtonName] = useState('all');
+    const [buttonName, setButtonName] = useState('all'); //for filter-buttons
 
     const onClickALLHandler = () => {
         props.changeFilter('all')
@@ -30,37 +32,34 @@ export const Todolist = (props: TodolistProps) => {
         props.changeFilter('completed')
         setButtonName('completed')
     }
-    const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setText(event.currentTarget.value)
-        setError("");
-    }
+
     const onClickAddTaskHandler = () => {
         if (text.trim() !== '') {
             props.addTask(text.trim())
-            setText('')
             setError('')
+            setText('')
         } else {
             setError('Error! Enter the task')
+            setText('')
         }
     }
-    const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
+    const onKeyPressHandler = () => {
             onClickAddTaskHandler()
-        }
     }
 
-    let inputClassName = error && s.error
+    //let inputClassName = error && s.error
 
     return (
         <div className={s.todolistContainer}>
             <h3>{props.title}</h3>
             <div>
                 <div className={s.errorMessage}> {error}</div>
-                <input value={text}
-                       className={inputClassName}
-                       onChange={onChangeInputHandler}
-                       onKeyPress={onKeyPressHandler}/>
-                <button onClick={onClickAddTaskHandler}>+</button>
+                <UniversalInput
+                    value={text}
+                    onEnter={onKeyPressHandler}
+                    onChangeText={setText}/>
+                <UniversalButton name={'+'} callback={onClickAddTaskHandler}/>
+
             </div>
             <ul>
                 {props.tasks.map(elem => {
@@ -68,19 +67,14 @@ export const Todolist = (props: TodolistProps) => {
                     const onClickDelHandler = () => {
                         props.deleteTask(elem.id)
                     }
-                    // const onChangeStatusHandler = (event: ChangeEvent<HTMLInputElement>) => {
-                    //     props.changeStatus(elem.id, event.currentTarget.checked)
-                    // }
                     const onChangeStatusHandler = (isDone: boolean) => {
                         props.changeStatus(elem.id, isDone)
                     }
 
                     return (
                         <li key={elem.id} className={elem.isDone ? s.isDone : ""}>
-                            <UniversalButton name={'DEL'} callback={onClickDelHandler}/>
+                            <UniversalButton name={'DEL'} callback={onClickDelHandler} style={'delete'}/>
                             <UniversalCheckbox checked={elem.isDone} callback={(isDone)=>onChangeStatusHandler(isDone)}/>
-                            {/*<button className={s.buttonDelete} onClick={onClickDelHandler}>DEL</button>*/}
-                            {/*<input type="checkbox" checked={elem.isDone} onChange={onChangeStatusHandler}/>*/}
                             <span>{elem.title}</span>
                         </li>
                     )
@@ -88,9 +82,9 @@ export const Todolist = (props: TodolistProps) => {
 
             </ul>
             <div>
-                <button className={buttonName==='all' ? s.activeFilter : s.disactiveFilter} onClick={onClickALLHandler}>All</button>
-                <button className={buttonName==='active' ? s.activeFilter : s.disactiveFilter} onClick={onClickActiveHandler}>Active</button>
-                <button className={buttonName==='completed' ? s.activeFilter : s.disactiveFilter} onClick={onClickCompletedHandler}>Completed</button>
+                <UniversalButton name={'All'} callback={onClickALLHandler} style={buttonName==='all' ? 'active' : ''}/>
+                <UniversalButton name={'Active'} callback={onClickActiveHandler} style={buttonName==='active' ? 'active' : ''}/>
+                <UniversalButton name={'Completed'} callback={onClickCompletedHandler} style={buttonName==='completed' ? 'active' : ''}/>
             </div>
         </div>
     )
