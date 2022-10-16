@@ -1,5 +1,17 @@
 .todolistContainer{
     font-family: Montserrat;
+    height: max-content;
+    /*border-radius: 5px;*/
+    padding: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0, .3);
+}
+.todolistTitleContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.todolistTitleContainer h3{
+    align-self: flex-start;
 }
 .error {
     border: red 1px solid;
@@ -9,38 +21,10 @@
     color: red;
     font-size: 12px;
 }
-
-.activeFilter {
-    background: #0066CC;
-    border-radius: 3px;
-    border: 1px solid #0066CC;
-    color: #FFFFFF;
-}
-.disactiveFilter{
-    background: #FFFFFF;
-    border: 1px solid #004D99;
-    border-radius: 3px;
-    color: #0066CC;
-}
-.buttonDelete{
-    background: #CC1439;
-    border-radius: 3px;
-    border: 1px solid #CC1439;
-}
-.activeFilter:hover {
-    background: #0080FF;
-    border-radius: 3px;
+.emptyMessage {
+    font-size: 12px;
 }
 
-.buttonDelete:hover {
-    background: #FF1A47;
-    border-radius: 3px;
-}
-.disactiveFilter:hover {
-    background: #E5F0FA;
-    border: 1px solid #0066CC;
-    border-radius: 3px;
-}
 .isDone {
     opacity: 0.5;
 }
