@@ -50,6 +50,14 @@ function App() {
 
     const [titleTodolist, setTitleTodolist] = useState('')
 
+    const editTaskTitle = (title: string, todolistID: string, taskID: string) => {
+        setTasks({...tasks, [todolistID]: tasks[todolistID].map( elem => {
+            return (
+                elem.id === taskID ? {...elem, title: title} : elem
+            )
+            })})
+    }
+
     const deleteTask = (idTask: string, todolistID: string) => {
         setTasks({...tasks, [todolistID]: tasks[todolistID].filter(elem => elem.id !== idTask)})
     }
@@ -74,16 +82,23 @@ function App() {
         })
     }
     const deleteTodolist = (todolistID: string) => {
-        setTodolists(todolists.filter( elem => elem.id !== todolistID))
+        setTodolists(todolists.filter(elem => elem.id !== todolistID))
     }
     const addTodolist = () => {
-        if (titleTodolist !== ''){
-            let newTodolist:TodolistsType = {id: v1(), title: titleTodolist, filter: 'all'}
+        if (titleTodolist !== '') {
+            let newTodolist: TodolistsType = {id: v1(), title: titleTodolist, filter: 'all'}
             setTodolists([newTodolist, ...todolists])
             setTasks({...tasks, [newTodolist.id]: []})
             setTitleTodolist('')
         }
 
+    }
+    const changeTodolistTitle = (title: string, todolistID: string) => {
+        setTodolists(todolists.map(elem => {
+            return (
+                elem.id === todolistID ? {...elem, title: title} : elem
+            )
+        }))
     }
     const onChangeTodolistTitle = (text: string) => {
         setTitleTodolist(text)
@@ -111,10 +126,12 @@ function App() {
                       title={elem.title}
                       tasks={filteredTasks}
                       deleteTask={deleteTask}
+                      editTaskTitle={editTaskTitle}
                       changeFilter={changeFilter}
                       addTask={addTask}
                       changeStatus={changeStatus}
-                      deleteTodolist={deleteTodolist}/>
+                      deleteTodolist={deleteTodolist}
+                      changeTodolistTitle={changeTodolistTitle}/>
         )
     })
 

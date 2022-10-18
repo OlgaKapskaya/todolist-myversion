@@ -5,6 +5,7 @@ import {UniversalButton} from "./universal_components/UniversalButton";
 import {UniversalCheckbox} from "./universal_components/UniversalCheckbox";
 import {UniversalInput} from "./universal_components/UniversalInput";
 import del from '../trash.svg'
+import {EditableSpan} from "./EditableSpan";
 
 type TodolistProps = {
     todolistID: string
@@ -16,6 +17,8 @@ type TodolistProps = {
     addTask: (title: string, todolistID: string) => void
     changeStatus: (idTask: string, isDone: boolean, todolistID: string) => void
     deleteTodolist: (todolistID: string) => void
+    changeTodolistTitle: (title: string, todolistID: string) => void
+    editTaskTitle: (title: string, todolistID: string, taskID: string) => void
 }
 
 export const Todolist = (props: TodolistProps) => {
@@ -47,11 +50,14 @@ export const Todolist = (props: TodolistProps) => {
         onClickAddTaskHandler()
     }
 
+    const changeTodolistTitle = (title: string) => {
+        props.changeTodolistTitle(title, props.todolistID)
+    }
     return (
         <div className={s.todolistContainer}>
             <div className={s.todolistTitleContainer}>
                 <UniversalButton name={'delete todolist '} image={del} callback={() => props.deleteTodolist(props.todolistID)}/>
-                <h3>{props.title}</h3>
+                <EditableSpan title={props.title} changeTitle={changeTodolistTitle}/>
             </div>
             <div>
                 <UniversalInput
@@ -72,13 +78,15 @@ export const Todolist = (props: TodolistProps) => {
                     const onChangeStatusHandler = (isDone: boolean) => {
                         props.changeStatus(elem.id, isDone, props.todolistID)
                     }
-
+                    const onChangeTaskTitle = (title: string) => {
+                        props.editTaskTitle(title, props.todolistID, elem.id)
+                    }
                     return (
                         <li key={elem.id} className={elem.isDone ? s.isDone : ""}>
                             <UniversalButton name={''} image={del} callback={onClickDelHandler} style={'delete'}/>
                             <UniversalCheckbox checked={elem.isDone}
                                                callback={(isDone) => onChangeStatusHandler(isDone)}/>
-                            <span>{elem.title}</span>
+                            <EditableSpan title={elem.title} changeTitle={onChangeTaskTitle}/>
                         </li>
                     )
                 })}
