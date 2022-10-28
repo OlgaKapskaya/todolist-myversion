@@ -6,6 +6,7 @@ import {UniversalInput} from "./components/universal_components/UniversalInput";
 import {UniversalButton} from "./components/universal_components/UniversalButton";
 
 
+
 export type TodolistsType = {
     id: string
     title: string
@@ -25,7 +26,6 @@ function App() {
 
     let todolistID1 = v1();
     let todolistID2 = v1();
-
     let [todolists, setTodolists] = useState<Array<TodolistsType>>([
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
@@ -48,6 +48,16 @@ function App() {
         ]
     });
 
+    const changeFilter = (buttonName: FilterType, todolistID: string) => {
+        setTodolists(todolists.map(elem => {
+            return (
+                elem.id === todolistID ? {...elem, filter: buttonName} : elem
+            )
+        }))
+    }
+
+
+
     const [titleTodolist, setTitleTodolist] = useState('')
 
     const editTaskTitle = (title: string, todolistID: string, taskID: string) => {
@@ -57,17 +67,11 @@ function App() {
             )
             })})
     }
-
     const deleteTask = (idTask: string, todolistID: string) => {
         setTasks({...tasks, [todolistID]: tasks[todolistID].filter(elem => elem.id !== idTask)})
     }
-    const changeFilter = (buttonName: FilterType, todolistID: string) => {
-        setTodolists(todolists.map(elem => {
-            return (
-                elem.id === todolistID ? {...elem, filter: buttonName} : elem
-            )
-        }))
-    }
+
+
     const addTask = (title: string, todolistID: string) => {
         let newTask = {id: v1(), title: title, isDone: false}
         setTasks({...tasks, [todolistID]: [newTask, ...tasks[todolistID]]})

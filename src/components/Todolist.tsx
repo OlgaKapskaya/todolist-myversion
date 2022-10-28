@@ -5,7 +5,7 @@ import {UniversalButton} from "./universal_components/UniversalButton";
 import {UniversalCheckbox} from "./universal_components/UniversalCheckbox";
 import {UniversalInput} from "./universal_components/UniversalInput";
 import del from '../trash.svg'
-import {EditableSpan} from "./EditableSpan";
+import {EditableSpan} from "./universal_components/EditableSpan";
 
 type TodolistProps = {
     todolistID: string
@@ -57,7 +57,9 @@ export const Todolist = (props: TodolistProps) => {
         <div className={s.todolistContainer}>
             <div className={s.todolistTitleContainer}>
                 <UniversalButton name={'delete todolist '} image={del} callback={() => props.deleteTodolist(props.todolistID)}/>
-                <EditableSpan title={props.title} changeTitle={changeTodolistTitle}/>
+                <h3>
+                    <EditableSpan title={props.title} changeTitle={changeTodolistTitle}/>
+                </h3>
             </div>
             <div>
                 <UniversalInput
