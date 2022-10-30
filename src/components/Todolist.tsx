@@ -85,7 +85,7 @@ export const Todolist = (props: TodolistProps) => {
                     }
                     return (
                         <li key={elem.id} className={elem.isDone ? s.isDone : ""}>
-                            <UniversalButton name={''} image={del} callback={onClickDelHandler} style={'delete'}/>
+                            <UniversalButton name={''} image={del} callback={onClickDelHandler} buttonStyle={'delete'}/>
                             <UniversalCheckbox checked={elem.isDone}
                                                callback={(isDone) => onChangeStatusHandler(isDone)}/>
                             <EditableSpan title={elem.title} changeTitle={onChangeTaskTitle}/>
@@ -97,11 +97,11 @@ export const Todolist = (props: TodolistProps) => {
 
             <div>
                 <UniversalButton name={'All'} callback={onClickALLHandler}
-                                 style={buttonName === 'all' ? 'active' : ''}/>
+                                 buttonStyle={buttonName === 'all' ? 'active' : ''}/>
                 <UniversalButton name={'Active'} callback={onClickActiveHandler}
-                                 style={buttonName === 'active' ? 'active' : ''}/>
+                                 buttonStyle={buttonName === 'active' ? 'active' : ''}/>
                 <UniversalButton name={'Completed'} callback={onClickCompletedHandler}
-                                 style={buttonName === 'completed' ? 'active' : ''}/>
+                                 buttonStyle={buttonName === 'completed' ? 'active' : ''}/>
             </div>
         </div>
     )

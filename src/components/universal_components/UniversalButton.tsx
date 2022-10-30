@@ -5,13 +5,13 @@ type UniversalButtonProps = {
     name: string
     callback: () => void
     image?: string
-    style?: 'active' | 'delete' | ''
+    buttonStyle?: 'active' | 'delete' | ''
 }
 export const UniversalButton = (props: UniversalButtonProps) => {
     const onClickDelHandler = () => {
         props.callback()
     }
-    const styleName = props.style === 'delete' ? s.deleteButton : props.style === 'active' ? s.activeFilter : s.defaultButton
+    const styleName = props.buttonStyle === 'delete' ? s.deleteButton : props.buttonStyle === 'active' ? s.activeFilter : s.defaultButton
 
 
     return (

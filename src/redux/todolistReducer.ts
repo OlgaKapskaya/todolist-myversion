@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import {FilterType, TodolistsType} from "../App";
 import {v1} from "uuid";
 
@@ -8,6 +7,7 @@ const DELETE_TODOLIST = 'DELETE-TODOLIST'
 const ADD_TODOLIST = 'ADD-TODOLIST'
 const CHANGE_TODOLIST_TITLE = 'CHANGE_TODOLIST_TITLE'
 
+//initial state
 let todolistID1 = v1();
 let todolistID2 = v1();
 const initialTodolists: TodolistsType[] = [
@@ -15,35 +15,29 @@ const initialTodolists: TodolistsType[] = [
     {id: todolistID2, title: 'What to buy', filter: 'all'},
 ]
 //full action type
-//type ActionType = ChangeFilterAction | DeleteTodolistAction | AddTodolistAction | ChangeTodolistTitle
-type ActionType = {
-    type: string
-    [key: string] : any
-}
+type ActionTodolistType = ChangeFilterAction | DeleteTodolistAction | AddTodolistAction | ChangeTodolistTitle
+
 //action types
 type ChangeFilterAction = {
-    type: string
+    type: 'CHANGE-FILTER'
     todolistID: string
     filter: FilterType
 }
 type DeleteTodolistAction = {
-    type: string
+    type: 'DELETE-TODOLIST'
     todolistID: string
 }
 type AddTodolistAction = {
-    type: string
+    type: 'ADD-TODOLIST'
     title: string
 }
 type ChangeTodolistTitle = {
-    type: string
+    type: 'CHANGE_TODOLIST_TITLE'
     todolistID: string
     title: string
 }
 
-
-
-
-export const todolistReducer = (todolists: TodolistsType[] = initialTodolists, action: ActionType) => {
+export const todolistReducer = (todolists: TodolistsType[] = initialTodolists, action: ActionTodolistType): TodolistsType[] => {
     switch (action.type) {
         case CHANGE_FILTER: {
             return todolists.map(elem => elem.id === action.todolistID
@@ -60,7 +54,6 @@ export const todolistReducer = (todolists: TodolistsType[] = initialTodolists, a
         case CHANGE_TODOLIST_TITLE: {
             return todolists.map(elem => elem.id === action.todolistID ? {...elem, title: action.title} : elem)
         }
-
         default: return todolists
     }
 
