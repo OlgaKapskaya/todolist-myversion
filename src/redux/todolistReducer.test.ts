@@ -26,6 +26,7 @@ test('delete todolist', () => {
 test('add new todolist', () => {
     let todolistID1 = v1();
     let todolistID2 = v1();
+    let todolistID3 = v1();
     let state: TodolistsType[] = [
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
@@ -33,10 +34,11 @@ test('add new todolist', () => {
 
     const newTodolistTitle = 'new todolist'
     const startState = state
-    const endState = todolistReducer(startState, AddTodolistActionCreator(newTodolistTitle))
+    const endState = todolistReducer(startState, AddTodolistActionCreator(todolistID3,newTodolistTitle))
 
     expect(endState.length).toBe(3)
     expect(endState[0].title).toBe(newTodolistTitle)
+    expect(endState[0].id).toBe(todolistID3)
 })
 test ('change todolist filter', () => {
     let todolistID1 = v1();
