@@ -15,7 +15,7 @@ const initialTodolists: TodolistsType[] = [
     {id: todolistID2, title: 'What to buy', filter: 'all'},
 ]
 //full action type
-type ActionTodolistType = ChangeFilterAction | DeleteTodolistAction | AddTodolistAction | ChangeTodolistTitle
+type ActionTodolistType = ChangeFilterAction | DeleteTodolistAT | AddTodolistAT| ChangeTodolistTitle
 
 //action types
 type ChangeFilterAction = {
@@ -23,11 +23,11 @@ type ChangeFilterAction = {
     todolistID: string
     filter: FilterType
 }
-type DeleteTodolistAction = {
+export type DeleteTodolistAT = {
     type: 'DELETE-TODOLIST'
     todolistID: string
 }
-type AddTodolistAction = {
+export type AddTodolistAT = {
     type: 'ADD-TODOLIST'
     todolistID: string
     title: string
@@ -60,17 +60,16 @@ export const todolistReducer = (todolists: TodolistsType[] = initialTodolists, a
 
 }
 
-
 //action creators
 export const ChangeFilterActionCreator = (todolistID: string, filter: FilterType) => {
-    return <ChangeFilterAction>{type: CHANGE_FILTER, todolistID:todolistID, filter: filter}
+    return {type: CHANGE_FILTER, todolistID, filter} as ChangeFilterAction
 }
 export const DeleteTodolistActionCreator = (todolistID: string) => {
-    return <DeleteTodolistAction>{type: DELETE_TODOLIST, todolistID: todolistID}
+    return {type: DELETE_TODOLIST, todolistID} as DeleteTodolistAT
 }
-export const AddTodolistActionCreator = (todolistID: string, title: string) => {
-    return <AddTodolistAction>{type: ADD_TODOLIST, todolistID: todolistID, title: title}
+export const AddTodolistActionCreator = (title: string) => {
+    return {type: ADD_TODOLIST, todolistID: v1(), title} as AddTodolistAT
 }
 export const ChangeTodolistTitleActionCreator = (todolistID: string, title: string) => {
-    return <ChangeTodolistTitle>{type: CHANGE_TODOLIST_TITLE, todolistID: todolistID, title: title}
+    return {type: CHANGE_TODOLIST_TITLE, todolistID, title} as ChangeTodolistTitle
 }

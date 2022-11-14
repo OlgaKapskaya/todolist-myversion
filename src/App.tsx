@@ -12,8 +12,8 @@ import {
 } from "./redux/todolistReducer";
 import {
     AddTaskActionCreator,
-    AddTaskListActionCreator, ChangeTaskStatusActionCreator,
-    DeleteTaskActionCreator, DeleteTaskListActionCreator,
+    ChangeTaskStatusActionCreator,
+    DeleteTaskActionCreator,
     EditTaskTitleActionCreator,
     tasksReducer
 } from "./redux/tasksReducer";
@@ -68,13 +68,13 @@ function App() {
     }
     const deleteTodolist = (todolistID: string) => {
         dispatch(DeleteTodolistActionCreator(todolistID))
-        tasksDispatch(DeleteTaskListActionCreator(todolistID))
+        tasksDispatch(DeleteTodolistActionCreator(todolistID))
     }
     const addTodolist = () => {
         if (titleTodolist !== '') {
-            let newTodolistID = v1();
-            dispatch(AddTodolistActionCreator(newTodolistID ,titleTodolist))
-            tasksDispatch(AddTaskListActionCreator(newTodolistID))
+            let action = AddTodolistActionCreator(titleTodolist)
+            dispatch(action)
+            tasksDispatch(action)
             setTitleTodolist('')
         }
     }

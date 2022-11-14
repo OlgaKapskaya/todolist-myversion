@@ -1,11 +1,12 @@
 import {v1} from "uuid";
 import {
-    AddTaskActionCreator, AddTaskListActionCreator,
+    AddTaskActionCreator,
     ChangeTaskStatusActionCreator,
-    DeleteTaskActionCreator, DeleteTaskListActionCreator,
+    DeleteTaskActionCreator,
     EditTaskTitleActionCreator,
     tasksReducer
 } from "./tasksReducer";
+import {AddTodolistActionCreator, DeleteTodolistActionCreator} from "./todolistReducer";
 
 test('task title must be changed', () => {
     let todolistID1 = v1();
@@ -78,7 +79,6 @@ test('task status must be changed', () => {
 })
 test('add new empty task list', () => {
     let todolistID1 = v1();
-    let todolistID2 = v1();
     let taskID1 = v1();
     let taskID2 = v1();
     let state = {
@@ -87,12 +87,11 @@ test('add new empty task list', () => {
             {id: taskID2, title: "JS", isDone: true},
         ]
     }
-    let newState = tasksReducer(state, AddTaskListActionCreator(todolistID2))
+    let newState = tasksReducer(state, AddTodolistActionCreator('hello'))
 
     expect(newState).not.toBe(state)
     expect(newState).not.toEqual(state)
     expect(newState[todolistID1]).toBe(state[todolistID1])
-    expect(newState[todolistID2].length).toBe(0)
 })
 test('remove task list', () => {
     let todolistID1 = v1();
@@ -108,7 +107,7 @@ test('remove task list', () => {
             {id: 'taskID4', title: "CSS", isDone: true},
         ]
     }
-    let newState = tasksReducer(state, DeleteTaskListActionCreator(todolistID1))
+    let newState = tasksReducer(state, DeleteTodolistActionCreator(todolistID1))
 
     expect(newState).not.toBe(state)
     expect(newState).not.toEqual(state)

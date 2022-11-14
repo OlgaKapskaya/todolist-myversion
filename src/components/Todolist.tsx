@@ -25,6 +25,7 @@ export const Todolist = (props: TodolistProps) => {
 
     const [text, setText] = useState('') //for input
     const [buttonName, setButtonName] = useState('all'); //for filter-buttons
+
     const onClickALLHandler = () => {
         props.changeFilter('all', props.todolistID)
         setButtonName('all')
@@ -37,7 +38,6 @@ export const Todolist = (props: TodolistProps) => {
         props.changeFilter('completed', props.todolistID)
         setButtonName('completed')
     }
-
     const onClickAddTaskHandler = () => {
         if (text.trim() !== '') {
             props.addTask(text.trim(), props.todolistID)
@@ -49,7 +49,6 @@ export const Todolist = (props: TodolistProps) => {
     const onKeyPressHandler = () => {
         onClickAddTaskHandler()
     }
-
     const changeTodolistTitle = (title: string) => {
         props.changeTodolistTitle(title, props.todolistID)
     }
