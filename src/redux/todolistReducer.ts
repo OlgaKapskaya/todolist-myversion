@@ -8,12 +8,7 @@ const ADD_TODOLIST = 'ADD-TODOLIST'
 const CHANGE_TODOLIST_TITLE = 'CHANGE_TODOLIST_TITLE'
 
 //initial state
-let todolistID1 = v1();
-let todolistID2 = v1();
-const initialTodolists: TodolistsType[] = [
-    {id: todolistID1, title: 'What to learn', filter: 'all'},
-    {id: todolistID2, title: 'What to buy', filter: 'all'},
-]
+const initialTodolists: TodolistsType[] = []
 //full action type
 type ActionTodolistType = ChangeFilterAction | DeleteTodolistAT | AddTodolistAT| ChangeTodolistTitle
 
@@ -38,7 +33,7 @@ type ChangeTodolistTitle = {
     title: string
 }
 
-export const todolistReducer = (todolists: TodolistsType[] = initialTodolists, action: ActionTodolistType): TodolistsType[] => {
+export const todolistReducer = (todolists = initialTodolists, action: ActionTodolistType): TodolistsType[] => {
     switch (action.type) {
         case CHANGE_FILTER: {
             return todolists.map(elem => elem.id === action.todolistID

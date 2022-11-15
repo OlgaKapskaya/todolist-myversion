@@ -35,8 +35,9 @@ type ChangeTaskStatusAction = {
     newStatus: boolean
 }
 
+const initialTasks:TodolistTasksType = {}
 
-export const tasksReducer = (tasks: TodolistTasksType, action: ActionTaskType) => {
+export const tasksReducer = (tasks= initialTasks, action: ActionTaskType):TodolistTasksType => {
     switch (action.type) {
         case EDIT_TASK_TITLE:
             return {
@@ -59,6 +60,8 @@ export const tasksReducer = (tasks: TodolistTasksType, action: ActionTaskType) =
             let newTasks = {...tasks}
             delete newTasks[action.todolistID]
             return newTasks
+        default:
+            return tasks
     }
 }
 
