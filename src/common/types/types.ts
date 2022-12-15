@@ -1,3 +1,6 @@
+import {TodolistsAT} from "../../bll/reducers/todolistsReducer";
+import {TasksAT} from "../../bll/reducers/tasksReducer";
+
 export type TodolistType = {
     id: string
     title: string
@@ -43,3 +46,4 @@ export enum TaskPriorities {
     Later = 4
 }
 export type FilterType = "all" | "active" | "completed"
+export type ActionsAppType = TodolistsAT | TasksAT

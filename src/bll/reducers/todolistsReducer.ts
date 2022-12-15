@@ -1,5 +1,8 @@
-import {FilterType, TodolistAppType, TodolistType} from "../../common/types/types";
+import {ActionsAppType, FilterType, TodolistAppType, TodolistType} from "../../common/types/types";
 import {v1} from "uuid";
+import {ThunkDispatch} from "redux-thunk";
+import {AppRootStateType} from "../store";
+import {todolistAPI} from "../../api/todolistAPI";
 
 export type TodolistsAT = AddTodolistAT | RemoveTodolistAT
     | ChangeTodolistTitleAT | ChangeTodolistFilterAT | SetTodolistsAT
@@ -49,4 +52,12 @@ export const changeTodolistFilterAC = (todolistID: string, filter: FilterType) =
 }
 export const setTodolistsAC = (todolists: TodolistType[]) => {
     return {type: "SET_TODOLISTS", todolists} as const
+}
+
+//thunk creators
+export const getTodolictsTC = () => (dispatch: ThunkDispatch<AppRootStateType, unknown, ActionsAppType>) => {
+    todolistAPI.getTodolists()
+        .then((res) => {
+            dispatch(setTodolistsAC(res.data))
+        })
 }
