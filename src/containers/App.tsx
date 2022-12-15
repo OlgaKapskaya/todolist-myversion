@@ -1,8 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import "./App.css";
 import {useAppDispatch, useAppSelector} from "../common/hooks/hooks";
-import {getTodolictsTC} from "../bll/reducers/todolistsReducer";
+import {addTodolistTC, getTodolictsTC} from "../bll/reducers/todolistsReducer";
 import {Todolist} from "../components/Todolist/Todolist";
+import {Input} from "../components/Input/Input";
 
 
 function App() {
@@ -14,14 +15,24 @@ function App() {
 
     }, [])
 
+    const addTodolist = useCallback((title: string): void => {
+        dispatch(addTodolistTC(title))
+    }, [dispatch])
+
     return (
-        <div className="App">
-            {todolists && todolists.map(elem => <Todolist todolistID={elem.id}
-                                                          key={elem.id}
-                                                          title={elem.title}
-                                                          filter={elem.filter}/>)
-            }
-        </div>
+        <>
+            <header className="AppHeader">
+                <Input label="Add todolist" addItem={addTodolist}/>
+            </header>
+            <div className="App">
+
+                {todolists && todolists.map(elem => <Todolist todolistID={elem.id}
+                                                              key={elem.id}
+                                                              title={elem.title}
+                                                              filter={elem.filter}/>)
+                }
+            </div>
+        </>
     );
 }
 

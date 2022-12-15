@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {TaskType} from "../../../common/types/types";
 import {useAppDispatch} from "../../../common/hooks/hooks";
-import {Accordion, ListGroup, Tooltip} from "react-bootstrap";
+import {Accordion, ListGroup} from "react-bootstrap";
 import {RiDeleteBin6Line} from "@react-icons/all-files/ri/RiDeleteBin6Line";
 
 type TaskPropsType = {

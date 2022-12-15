@@ -55,7 +55,7 @@ export const tasksReducer = (state = initState, action: TasksAT): TaskAppType =>
                 } : elem)
             }
         case "ADD_TODOLIST":
-            return {...state, [action.id]: []}
+            return {...state, [action.todolist.id]: []}
         case "REMOVE_TODOLIST": {
             let stateCopy = {...state}
             delete stateCopy[action.id]
@@ -69,9 +69,7 @@ export const tasksReducer = (state = initState, action: TasksAT): TaskAppType =>
             return stateCopy
         }
         case "SET_TASKS": {
-            const stateCopy = {...state}
-            stateCopy[action.todolistID] = action.tasks
-            return stateCopy
+            return {...state, [action.todolistID]: action.tasks}
         }
         default:
             return state

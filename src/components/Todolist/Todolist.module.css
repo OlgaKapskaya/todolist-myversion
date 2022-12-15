@@ -4,3 +4,9 @@
     height: max-content;
     padding: 10px;
 }
+.deleteButton{
+    cursor: pointer;
+}
+.deleteButton:hover{
+    color: #b73e3e;
+}
