@@ -66,7 +66,7 @@ export const deleteTodolictsTC = (todolistID: string) => (dispatch: Dispatch<Tod
         })
 }
 export const addTodolistTC = (title: string) => (dispatch: Dispatch<TodolistsAT>) => {
-    todolistAPI.addTodolist(title)
+    todolistAPI.createTodolist(title)
         .then((res) => {
             dispatch(addTodolistAC(res.data.data.item))
         })

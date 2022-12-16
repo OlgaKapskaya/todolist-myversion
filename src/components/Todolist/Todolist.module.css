@@ -10,3 +10,8 @@
 .deleteButton:hover{
     color: #b73e3e;
 }
+.cardFooter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

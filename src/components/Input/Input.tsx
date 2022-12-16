@@ -1,14 +1,28 @@
 import React, {ChangeEvent, KeyboardEvent, FC, useState, memo} from "react";
-import {Form} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 
 type InputPropsType = {
     label: string
+    withButton?: boolean
     addItem: (title: string) => void
 }
+/**
+ * Creates a new input component
+ *
+ * params:
+ *
+ * label: string - required - plaseholder text
+ *
+ * addItem: ( arg: string ) => void - required - add value function
+ *
+ * withButton: boolean - draw input with button
+ *
+ */
 export const Input: FC<InputPropsType> = memo(({
-                                              label,
-                                              addItem
-                                          }) => {
+                                                   label,
+                                                   withButton,
+                                                   addItem
+                                               }) => {
     const [value, setValue] = useState<string>("")
     const [isError, setIsError] = useState<string>("")
 
@@ -49,7 +63,14 @@ export const Input: FC<InputPropsType> = memo(({
                     {isError}
                 </Form.Text>
             }
-
+            {
+                withButton
+                && <Button variant="primary"
+                           size="sm"
+                           onClick={addItemHandler}>
+                    Add
+                </Button>
+            }
         </>
     )
 })

@@ -16,9 +16,9 @@ export type TaskType = {
     description: string
     status: TaskStatuses
     priority: TaskPriorities
-    startDate: Date
-    deadline: Date
-    addedDate: Date
+    startDate: string
+    deadline: string
+    addedDate: string
 }
 export type TaskAppType = {
     [key: string] : TaskType[]
@@ -27,10 +27,10 @@ export type TaskAppType = {
 export type UpdateTaskType = {
     title: string
     description: string
-    status: number
-    priority: number
-    startDate: Date
-    deadline: Date
+    status: TaskStatuses
+    priority: TaskPriorities
+    startDate: string
+    deadline: string
 }
 export enum TaskStatuses {
     New = 0,
