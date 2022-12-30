@@ -8,6 +8,7 @@ import {getTodolictsTC} from "../../bll/reducers/todolistsReducer";
 
 export const TodolistList: FC = () => {
     const {todolists, addTodolist, changeTodolistFilter} = useTodolists()
+
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 
@@ -20,20 +21,20 @@ export const TodolistList: FC = () => {
     const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
     !isLoggedIn && navigate('/login')
 
-
-
-
     return (
-        <div className="App">
+        <div>
             <header className="AppHeader">
                 <Input label="Add todolist" addItem={addTodolist}/>
             </header>
-            {
-                todolists.map(elem => <Todolist todolist={elem}
-                                                changeTodolistFilter={changeTodolistFilter}
-                                                key={elem.id}
-                />)
-            }
+            <div className="App">
+
+                {
+                    todolists.map(elem => <Todolist todolist={elem}
+                                                    changeTodolistFilter={changeTodolistFilter}
+                                                    key={elem.id}
+                    />)
+                }
+            </div>
         </div>
     )
 }

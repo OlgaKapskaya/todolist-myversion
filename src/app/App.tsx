@@ -25,9 +25,9 @@ function App() {
     }
 
     return (
-        <div >
+        <div>
             <NavBar/>
-            {status === 'loading' && <ProgressBar animated now={45} />}
+            {status === 'loading' && <ProgressBar animated now={100}/>}
             <AppRoutes/>
         </div>
     );

@@ -1,10 +1,22 @@
-This project contains the following libraries: 
-1. "react"
-2. "react-dom"
-3. "redux"
-4. "react-redux"
-5. "redux-thunk"
-6. "axios"
-7. "uuid"
-8. "bootstrap"
-9. "typescript"
+
+# TODOLIST APP
+
+The classic to-do list application
+## Demo
+
+https://OlgaKapskaya.github.io/todolist-myversion
+
+
+## Technology stack
+
+- react
+- redux
+- react-redux
+- react-thunk
+- typescript
+- axios
+- react-router-dom
+- react-hook-form
+- dayjs
+- react-icons
+- react-bootstrap
