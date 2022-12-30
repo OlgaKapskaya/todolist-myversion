@@ -6,6 +6,9 @@ import {RiDeleteBin6Line} from "@react-icons/all-files/ri/RiDeleteBin6Line";
 import {deleteTaskTC, updateTaskTC} from "../../../bll/reducers/tasksReducer";
 import s from "./Task.module.css"
 import {EditSpan} from "../../EditSpan/EditSpan";
+import dayjs from "dayjs";
+import {Datepicker} from "../../Datepicker/Datepicker";
+
 
 type TaskPropsType = {
     task: TaskType
@@ -20,6 +23,12 @@ export const Task: FC<TaskPropsType> = ({
     const updateTaskTitle = (title: string): void => {
         dispatch(updateTaskTC(task.todoListId, task.id, {title}))
     }
+    const onChangeStartDate = (date: string): void => {
+        dispatch(updateTaskTC(task.todoListId, task.id, {startDate: date}))
+    }
+    const onChangeDeadline = (date: string): void => {
+        dispatch(updateTaskTC(task.todoListId, task.id, {deadline: date}))
+    }
     return (
         <>
             <Accordion>
@@ -29,6 +38,10 @@ export const Task: FC<TaskPropsType> = ({
                 </Accordion.Header>
 
                 <Accordion.Body>
+                    <span className={s.addedDate}>
+                        Created: {dayjs(task.addedDate).format("DD MMMM YYYY HH:mm:ss")}
+                    </span>
+
                     <ListGroup variant="flush">
                         <ListGroup.Item>
                             Title: <EditSpan title={task.title} onChangeText={updateTaskTitle}/>
@@ -38,8 +51,14 @@ export const Task: FC<TaskPropsType> = ({
                         </ListGroup.Item>
                         <ListGroup.Item>Status: {task.status}</ListGroup.Item>
                         <ListGroup.Item>Priority: {task.priority}</ListGroup.Item>
-                        <ListGroup.Item>Start date: {task.startDate}</ListGroup.Item>
-                        <ListGroup.Item> Deadline: {task.deadline}</ListGroup.Item>
+                        <ListGroup.Item>
+                            Start date:
+                            <Datepicker date={task.startDate} changeDate={onChangeStartDate}/>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            Deadline:
+                            <Datepicker date={task.deadline} changeDate={onChangeDeadline}/>
+                        </ListGroup.Item>
                     </ListGroup>
                 </Accordion.Body>
             </Accordion>

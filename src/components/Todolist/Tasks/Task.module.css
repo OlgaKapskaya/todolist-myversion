@@ -8,3 +8,7 @@
 .deleteButton:hover{
     color: #b73e3e;
 }
+.addedDate{
+    font-size: 10px;
+    opacity: 80%;
+}

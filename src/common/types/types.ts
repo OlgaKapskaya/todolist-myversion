@@ -1,5 +1,7 @@
 import {TodolistsAT} from "../../bll/reducers/todolistsReducer";
 import {TasksAT} from "../../bll/reducers/tasksReducer";
+import {AppAT} from "../../bll/reducers/appReducer";
+import {AuthAT} from "../../bll/reducers/authReducer";
 
 export type TodolistType = {
     id: string
@@ -46,4 +48,12 @@ export enum TaskPriorities {
     Later = 4
 }
 export type FilterType = "all" | "active" | "completed"
-export type ActionsAppType = TodolistsAT | TasksAT
+export type ActionsAppType = TodolistsAT | TasksAT | AuthAT | AppAT
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+
+export type LoginPayloadType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}

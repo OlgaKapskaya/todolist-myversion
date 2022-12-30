@@ -1,38 +1,27 @@
-import axios from "axios"
 import {TaskType, TodolistType, UpdateTaskType} from "../common/types/types";
+import {instance, ResponseType} from "../common/constants/instanceAPI";
+import {AxiosResponse} from "axios";
 
-type ResponseType<D = {}> = {
-    data: D
-    fieldsErrors: string[]
-    messages: string[]
-    resultCode: number
-}
+
 type GetTasksResponseType = {
     items: TaskType[]
     totalCount: number
     error: string | null
 }
 
-const instance = axios.create({
-    baseURL: "https://social-network.samuraijs.com/api/1.1/",
-    withCredentials: true,
-    headers: {
-        "API-KEY": "a3689f8d-4bdb-4cdd-9a1a-83733437adfc"
-    }
-})
 
 export const todolistAPI = {
     getTodolists() {
         return instance.get<TodolistType[]>("todo-lists")
     },
     createTodolist(title: string) {
-        return instance.post<ResponseType<{ item: TodolistType }>>("todo-lists", {title})
+        return instance.post<{ title: string }, AxiosResponse<ResponseType<{ item: TodolistType }>>>("todo-lists", {title})
     },
     deleteTodolist(todolistID: string) {
         return instance.delete<ResponseType>(`todo-lists/${todolistID}`)
     },
     updateTodolistTitle(todolistID: string, title: string) {
-        return instance.put<ResponseType>(`todo-lists/${todolistID}`, {title})
+        return instance.put<{ title: string }, AxiosResponse<ResponseType>>(`todo-lists/${todolistID}`, {title})
     },
     getTasks(todolistID: string) {
         return instance.get<GetTasksResponseType>(`todo-lists/${todolistID}/tasks`)
@@ -44,6 +33,6 @@ export const todolistAPI = {
         return instance.delete<ResponseType>(`/todo-lists/${todolistID}/tasks/${taskID}`)
     },
     updateTask(todolistID: string, taskID: string, task: UpdateTaskType) {
-        return instance.put<ResponseType<{ item: TaskType }>>(`/todo-lists/${todolistID}/tasks/${taskID}`, task)
+        return instance.put<UpdateTaskType, AxiosResponse<ResponseType<{ item: TaskType }>>>(`/todo-lists/${todolistID}/tasks/${taskID}`, task)
     }
 }
