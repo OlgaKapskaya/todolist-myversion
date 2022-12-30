@@ -7,6 +7,7 @@ import {FilterType} from "../../common/types/types";
 export const useTodolists = () => {
     const dispatch = useAppDispatch()
     const todolists = useAppSelector(state => state.todolists)
+
     useEffect(() => {
         dispatch(getTodolictsTC())
     }, [dispatch])

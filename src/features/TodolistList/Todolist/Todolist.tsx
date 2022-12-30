@@ -1,14 +1,14 @@
 import React, {FC, memo, useCallback, useEffect} from "react";
-import {FilterType, TaskStatuses, TaskType, TodolistAppType} from "../../common/types/types";
+import {FilterType, TaskStatuses, TaskType, TodolistAppType} from "../../../common/types/types";
 import {Button, Card} from "react-bootstrap";
 import {RiDeleteBin6Line} from "@react-icons/all-files/ri/RiDeleteBin6Line";
-import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../common/hooks/hooks";
 import {Task} from "./Tasks/Task";
-import {addTaskTC, setTasksTC} from "../../bll/reducers/tasksReducer";
+import {addTaskTC, setTasksTC} from "../../../bll/reducers/tasksReducer";
 import s from "./Todolist.module.css"
-import {changeTodolistTitleTC, deleteTodolictsTC} from "../../bll/reducers/todolistsReducer";
-import {EditSpan} from "../EditSpan/EditSpan";
-import {Input} from "../Input/Input";
+import {changeTodolistTitleTC, deleteTodolictsTC} from "../../../bll/reducers/todolistsReducer";
+import {EditSpan} from "../../../common/components/EditSpan/EditSpan";
+import {Input} from "../../../common/components/Input/Input";
 
 type TodolistType = {
     todolist: TodolistAppType

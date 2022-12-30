@@ -1,13 +1,13 @@
 import React, {FC} from "react";
-import {TaskType} from "../../../common/types/types";
-import {useAppDispatch} from "../../../common/hooks/hooks";
+import {TaskType} from "../../../../common/types/types";
+import {useAppDispatch} from "../../../../common/hooks/hooks";
 import {Accordion, ListGroup} from "react-bootstrap";
 import {RiDeleteBin6Line} from "@react-icons/all-files/ri/RiDeleteBin6Line";
-import {deleteTaskTC, updateTaskTC} from "../../../bll/reducers/tasksReducer";
+import {deleteTaskTC, updateTaskTC} from "../../../../bll/reducers/tasksReducer";
 import s from "./Task.module.css"
-import {EditSpan} from "../../EditSpan/EditSpan";
+import {EditSpan} from "../../../../common/components/EditSpan/EditSpan";
 import dayjs from "dayjs";
-import {Datepicker} from "../../Datepicker/Datepicker";
+import {Datepicker} from "../../../../common/components/Datepicker/Datepicker";
 
 
 type TaskPropsType = {
@@ -29,6 +29,8 @@ export const Task: FC<TaskPropsType> = ({
     const onChangeDeadline = (date: string): void => {
         dispatch(updateTaskTC(task.todoListId, task.id, {deadline: date}))
     }
+
+
     return (
         <>
             <Accordion>

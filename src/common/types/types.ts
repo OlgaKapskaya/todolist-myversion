@@ -9,7 +9,11 @@ export type TodolistType = {
     addedDate: string
     order: number
 }
-export type TodolistAppType = TodolistType & { filter : FilterType }
+
+export type TodolistAppType = TodolistType & {
+    filter : FilterType
+    entityStatus: RequestStatusType
+}
 
 export type TaskType = {
     id: string
