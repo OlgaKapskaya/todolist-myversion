@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "593fc363c7b489522ce87dd3cc983aaf",
+    "revision": "d20774e3eec754c1411c9a2c06228e4c",
     "url": "/todolist-myversion/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/todolist-myversion/static/css/2.f0e33c08.chunk.css"
   },
   {
-    "revision": "bbc59f82e2aec599cd44",
+    "revision": "68d04ed8f39b1a7cf470",
     "url": "/todolist-myversion/static/css/main.05f16bb7.chunk.css"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/todolist-myversion/static/js/2.ebf53f41.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bbc59f82e2aec599cd44",
-    "url": "/todolist-myversion/static/js/main.e1be84fc.chunk.js"
+    "revision": "68d04ed8f39b1a7cf470",
+    "url": "/todolist-myversion/static/js/main.0ec26908.chunk.js"
   },
   {
     "revision": "4e0e34f265fae8f33b01b27ae29d9d6f",
-    "url": "/todolist-myversion/static/js/main.e1be84fc.chunk.js.LICENSE.txt"
+    "url": "/todolist-myversion/static/js/main.0ec26908.chunk.js.LICENSE.txt"
   },
   {
     "revision": "79b4fe34dc3f1888fc3e",
