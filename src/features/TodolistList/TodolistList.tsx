@@ -1,25 +1,11 @@
-import React, {FC, useEffect} from "react";
+import React, {FC} from "react";
 import {Todolist} from "./Todolist/Todolist";
 import {Input} from "../../common/components/Input/Input";
 import {useTodolists} from "../../app/hooks/useTodolists";
-import {useNavigate} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
-import {getTodolictsTC} from "../../bll/reducers/todolistsReducer";
+
 
 export const TodolistList: FC = () => {
     const {todolists, addTodolist, changeTodolistFilter} = useTodolists()
-
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        if (isLoggedIn) {
-            dispatch(getTodolictsTC())
-        }
-    }, [])
-
-    const isLoggedIn = useAppSelector<boolean>(state => state.auth.isLoggedIn)
-    !isLoggedIn && navigate('/login')
 
     return (
         <div>

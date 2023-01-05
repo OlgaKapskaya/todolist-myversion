@@ -5,7 +5,7 @@ import {useAppDispatch, useAppSelector} from "../common/hooks/hooks";
 import {RequestStatusType} from "../common/types/types";
 import {meTC} from "../bll/reducers/authReducer";
 import {ProgressBar, Spinner} from "react-bootstrap";
-import {NavBar} from "../common/components/NavBar/NavBar";
+import {NavBar} from "../features/TodolistList/NavBar/NavBar";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
     useEffect(() => {
         dispatch(meTC())
-    }, [])
+    }, [dispatch])
 
     if (!isInitialized) {
         return <div

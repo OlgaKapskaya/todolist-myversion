@@ -39,6 +39,7 @@ export const EditSpan: FC<EditSpanPropsType> = memo(({title, onChangeText}) => {
                     <Form.Control type="text"
                                   size="sm"
                                   as="input"
+                                  style={{width: "100%"}}
                                   value={text}
                                   onChange={onChangeHandler}
                                   onBlur={offEditMode}

@@ -3,7 +3,7 @@ import {FilterType, TaskStatuses, TaskType, TodolistAppType} from "../../../comm
 import {Button, Card} from "react-bootstrap";
 import {RiDeleteBin6Line} from "@react-icons/all-files/ri/RiDeleteBin6Line";
 import {useAppDispatch, useAppSelector} from "../../../common/hooks/hooks";
-import {Task} from "./Tasks/Task";
+import {Task} from "./Task/Task";
 import {addTaskTC, setTasksTC} from "../../../bll/reducers/tasksReducer";
 import s from "./Todolist.module.css"
 import {changeTodolistTitleTC, deleteTodolictsTC} from "../../../bll/reducers/todolistsReducer";
